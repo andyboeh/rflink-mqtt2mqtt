@@ -16,9 +16,11 @@ import uuid
 if os.path.exists('/config/rflink-mqtt2mqtt.yaml'):
     fp = open('/config/rflink-mqtt2mqtt.yaml', 'r')
     config = yaml.safe_load(fp)
+    fp.close()
 elif os.path.exists('rflink-mqtt2mqtt.yaml'):
     fp = open('rflink-mqtt2mqtt.yaml', 'r')
     config = yaml.safe_load(fp)
+    fp.close()
 else:
     print('Configuration file not found, exiting.')
     sys.exit(1)
