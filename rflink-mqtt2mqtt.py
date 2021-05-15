@@ -60,7 +60,11 @@ def on_connect(client, userdata, flags, rc):
         4: "bad username or password",
         5: "not authorised"
     }
-    print("MQTT: " + connect_statuses.get(rc, "Unknown error"))
+    if rc != 0:
+        print("MQTT: " + connect_statuses.get(rc, "Unknown error"))
+    else:
+        for ii in range(0, len(config['rflink'])):
+            mqttc.subscribe(config['rflink'][ii]['topic'] + '/' + config['rflink'][ii]['msg'])
 
 def on_disconnect(client, userdata, rc):
     if rc != 0:
@@ -105,8 +109,7 @@ except:
     sys.exit(1)
 mqttc.loop_start()
 
-for ii in range(0, len(config['rflink'])):
-    mqttc.subscribe(config['rflink'][ii]['topic'] + '/' + config['rflink'][ii]['msg'])
+
     
 while True:
     time.sleep(1)
