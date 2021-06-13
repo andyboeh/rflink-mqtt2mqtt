@@ -43,6 +43,10 @@ def parseRfLink(msg, topic):
         key, value = part.split('=', 2)
         if key == "ID":
             devid = value
+        elif key == "TEMP":
+            payload[key] = (int(value, 16) & 0x7fff ) / 10
+            if (int(value, 16) & 0x8000) == 0x8000:
+                payload[key] = -payload[key]
         else:
             payload[key] = value
     topic = topic + "/" + proto + "_" + devid
