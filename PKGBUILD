@@ -16,7 +16,7 @@ conflicts=('rflink-mqtt2mqtt')
 sha256sums=('SKIP'
             '20f066f231ade8a9e3c2e688efb386c6cf4ba1dc86e4eb0a72cb9bf3ef91a08a'
             '997da4afe9598f5569d6ca9db5469cc2011c9b70477977eb1f660d9e1ef7cbb1'
-            'fc6db7279cec36cfef5e58074a1699894d8dceb824a4f873091116bb7c57144d')
+            'b26211370dd638ff6549f321419b40bdd95efc9547dea4bb8d0658f113cc7230')
 backup=('opt/rflink-mqtt2mqtt/rflink-mqtt2mqtt.yaml')
 
 pkgver() {
