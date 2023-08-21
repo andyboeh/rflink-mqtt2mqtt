@@ -49,7 +49,9 @@ def parseRfLink(msg, topic, stripid):
                 payload[key] = -payload[key]
         else:
             payload[key] = value
-    topic = topic + "/" + proto + "_" + stripid ? "" : devid
+    topic = topic + "/" + proto
+    if not stripid:
+        topic +=  "_" + devid
     for key in payload:
         value = payload[key]
         mqttc.publish(topic + '/' + key, payload=value, retain=False)
