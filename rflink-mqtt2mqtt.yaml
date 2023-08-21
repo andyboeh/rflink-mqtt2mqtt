@@ -9,6 +9,8 @@ rflink:
   - topic: /ESP00
     cmd: cmd
     msg: msg
+    stripid: true
   - topic: /ESP01
     cmd: cmd
     msg: msg
+    stripid: true

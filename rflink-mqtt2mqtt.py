@@ -25,7 +25,7 @@ else:
     print('Configuration file not found, exiting.')
     sys.exit(1)
 
-def parseRfLink(msg, topic):
+def parseRfLink(msg, topic, stripid):
     parts = msg.split(';')
     if len(parts) < 4:
         return
@@ -49,7 +49,7 @@ def parseRfLink(msg, topic):
                 payload[key] = -payload[key]
         else:
             payload[key] = value
-    topic = topic + "/" + proto + "_" + devid
+    topic = topic + "/" + proto + "_" + stripid ? "" : devid
     for key in payload:
         value = payload[key]
         mqttc.publish(topic + '/' + key, payload=value, retain=False)
@@ -80,7 +80,7 @@ def on_message(client, obj, msg):
     print("Msg: " + msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
     for ii in range(0, len(config['rflink'])):
         if msg.topic == config['rflink'][ii]['topic'] + '/' + config['rflink'][ii]['msg']:
-            parseRfLink(msg.payload.decode('ascii'), config['rflink'][ii]['topic'])
+            parseRfLink(msg.payload.decode('ascii'), config['rflink'][ii]['topic'], config['rflink'][ii]['stripid'])
 
 def on_publish(client, obj, mid):
     print("Pub: " + str(mid))
